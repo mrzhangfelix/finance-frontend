@@ -18,6 +18,8 @@
                 <el-button size="mini" type="danger" @click="adddialogVisible=true">添加一组数据</el-button>
             </el-form-item>  
         </el-form>
+        <el-tag style="margin-bottom: 10px">{{funddata.gztime}}共盈利{{funddata.todayIncameSum}}</el-tag>
+        <!--<el-tag type="success">{{funddata.gztime}}</el-tag>-->
         <el-table
                 :data="funddata.fundlist"
                 v-loading="tableLoading"
