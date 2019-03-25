@@ -18,8 +18,8 @@
                 <el-button size="mini" type="danger" @click="adddialogVisible=true">添加一组数据</el-button>
             </el-form-item>  
         </el-form>
-        <el-tag style="margin-bottom: 10px">{{funddata.gztime}}共盈利{{funddata.todayIncameSum}}</el-tag>
-        <!--<el-tag type="success">{{funddata.gztime}}</el-tag>-->
+        <el-tag style="margin-bottom: 10px">时间：{{funddata.gztime}}</el-tag>
+        <el-tag type="success">共盈利：{{funddata.todayIncameSum}}</el-tag>
         <el-table
                 :data="funddata.fundlist"
                 v-loading="tableLoading"
@@ -30,14 +30,17 @@
 
             <el-table-column
                     prop="fundName"
+                    width="170"
                     label="名称">
             </el-table-column>
             <el-table-column
                     prop="fundcode"
+                    width="65"
                     label="编码">
             </el-table-column>
             <el-table-column
                     prop="fundamount"
+                    width="100"
                     label="现持有总值">
             </el-table-column>
             <el-table-column
@@ -179,6 +182,9 @@
                         }
                 })
             }
-        }        
+        },
+        created: function(){
+            this.getfunddata()
+        }      
     }
     </script>
