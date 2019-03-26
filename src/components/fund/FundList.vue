@@ -9,8 +9,22 @@
                     <el-button type="primary" size="mini" style="margin-left: 5px" icon="el-icon-search" @click="generateNewFundJson">生成今日配置
                     </el-button>
             </el-form-item> 
+            <el-form-item label="自动刷新">
+                    <el-switch
+                    v-model="autoRefresh"
+                    active-color="#13ce66"
+                    inactive-color="#ff4949">
+                    </el-switch>
+            </el-form-item> 
+            <el-form-item label="桌面提示">  
+                    <el-switch
+                    v-model="desktopPrompt"
+                    active-color="#13ce66"
+                    inactive-color="#ff4949">
+                    </el-switch>
+            </el-form-item> 
             <el-form-item>
-                    <small>共盈利<span style="color:#67C23A">{{funddata.todayIncameSum}}</span></small>
+                    <small>共盈利<span :class="yingliClass">{{funddata.todayIncameSum}}</span></small>
             </el-form-item>
         </el-form>
         <el-table
@@ -50,13 +64,17 @@
 </template>
 
     <script>
+    const path = require('path')
     export default {
         data: function() {
             return {
                 funddata:{
                     
                 },
-                tableLoading:false
+                tableLoading:false,
+                yingliClass:'up-color',
+                autoRefresh:false,
+                desktopPrompt:false
             } 
         },
         methods: {
@@ -67,6 +85,12 @@
                     if (resp && resp.status == 200) {
                         var data = resp.data;
                         this.funddata = resp.data
+                        this.notifyMe();
+                        if(this.funddata.todayIncameSun>=0){
+                            this.yingliClass='up-color'
+                        }else{
+                            this.yingliClass='down-color'
+                        }
                         }
                 })
             },
@@ -87,22 +111,52 @@
             },
             handleEdit(index, row){
                 console.log(row)
+            },
+            notifyMe() {
+                    // 先检查浏览器是否支持
+                    if(!("Notification" in window)) {
+                        alert("This browser does not support desktop notification");
+                    }
+
+                    // 检查用户是否同意接受通知
+                    else if(Notification.permission === "granted") {
+                        // If it's okay let's create a notification
+                        var notification = new Notification("你好:"+this.funddata.todayIncameSum); 
+                    }
+
+                    // 否则我们需要向用户获取权限
+                    else if(Notification.permission !== 'denied') {
+                        Notification.requestPermission(function(permission) {
+                            if(permission === "granted") {
+                                var notification = new Notification("你好:"+this.funddata.todayIncameSun); 
+                            }
+                        });
+                    }
+
+            },
+            startAutoreRefresh(){
+                var timerId = window.setInterval(this.getfunddata,60*1000);
             }
         },
         created: function(){
             this.getfunddata()
-            // var timerId = window.setInterval(this.getfunddata,60*1000);
         }        
     }
     </script>
 
 
 <style>
-  .el-table .up-row {
-    background: #F56C6C;
-  }
+    .up-color{
+        color:#F56C6C
+    }
+    .down-color{
+        color:#67C23A
+    }
+    .el-table .up-row {
+        color: #F56C6C;
+    }
 
-  .el-table .down-row {
-    background: #67C23A;
-  }
+    .el-table .down-row {
+        color: #67C23A;
+    }
 </style>
