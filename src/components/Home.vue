@@ -6,7 +6,7 @@
       </el-header>
       <el-container>
         <el-aside width="180px" class="home-aside">
-          <div style="display: flex;justify-content: flex-start;width: 180px;text-align: left;">
+          <div style="width: 180px;text-align: left;">
             <el-menu style="background: #545c64;width: 180px;" unique-opened>
                 <el-menu-item index="1" @click="goTodayFundJson">
                   <i class="el-icon-menu"></i>
@@ -18,7 +18,7 @@
                 </el-menu-item>
                 <el-menu-item index="3">
                   <i class="el-icon-menu"></i>
-                  <span slot="title">导航三</span>
+                  <span slot="title">监控预警</span>
                 </el-menu-item>
             </el-menu>
           </div>
