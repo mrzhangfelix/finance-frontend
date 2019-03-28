@@ -16,7 +16,11 @@
                   <i class="el-icon-menu"></i>
                   <span slot="title">基金列表</span>
                 </el-menu-item>
-                <el-menu-item index="3">
+                <el-menu-item index="3" @click="goindexInfo">
+                  <i class="el-icon-menu"></i>
+                  <span slot="title">指数信息</span>
+                </el-menu-item>
+                <el-menu-item index="4">
                   <i class="el-icon-menu"></i>
                   <span slot="title">监控预警</span>
                 </el-menu-item>
@@ -51,6 +55,9 @@
       },
       goTodayFundJson(){
         this.$router.push({path: '/todayFundJson'});
+      },
+      goindexInfo(){
+        this.$router.push({path: '/indexInfo'});
       }
     }
   }
