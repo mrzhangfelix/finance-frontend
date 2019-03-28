@@ -13,14 +13,16 @@
                     <el-switch
                     v-model="autoRefresh"
                     active-color="#13ce66"
-                    inactive-color="#ff4949">
+                    inactive-color="#ff4949"
+                    @change="switchAutoreRefresh">
                     </el-switch>
             </el-form-item> 
             <el-form-item label="桌面提示">  
                     <el-switch
                     v-model="desktopPrompt"
                     active-color="#13ce66"
-                    inactive-color="#ff4949">
+                    inactive-color="#ff4949"
+                    @change="switchDesktopPrompt">
                     </el-switch>
             </el-form-item> 
             <el-form-item>
@@ -74,6 +76,7 @@
                 tableLoading:false,
                 yingliClass:'up-color',
                 autoRefresh:false,
+                autoRefreshId:null,
                 desktopPrompt:false
             } 
         },
@@ -85,8 +88,10 @@
                     if (resp && resp.status == 200) {
                         var data = resp.data;
                         this.funddata = resp.data
-                        this.notifyMe();
-                        if(this.funddata.todayIncameSun>=0){
+                        if(this.desktopPrompt){
+                            this.notifyMe();
+                        }
+                        if(this.funddata.todayIncameSum>=0){
                             this.yingliClass='up-color'
                         }else{
                             this.yingliClass='down-color'
@@ -121,25 +126,39 @@
                     // 检查用户是否同意接受通知
                     else if(Notification.permission === "granted") {
                         // If it's okay let's create a notification
-                        var notification = new Notification("你好:"+this.funddata.todayIncameSum); 
+                        var notification = new Notification(this.funddata.todayIncameSum); 
                     }
 
                     // 否则我们需要向用户获取权限
                     else if(Notification.permission !== 'denied') {
                         Notification.requestPermission(function(permission) {
                             if(permission === "granted") {
-                                var notification = new Notification("你好:"+this.funddata.todayIncameSun); 
+                                var notification = new Notification(this.funddata.todayIncameSun); 
                             }
                         });
                     }
 
             },
-            startAutoreRefresh(){
-                var timerId = window.setInterval(this.getfunddata,60*1000);
+            switchAutoreRefresh(){
+                if(this.autoRefresh){
+                    this.autoRefreshId = window.setInterval(this.getfunddata,60*1000);
+                    console.log("打开定时刷新："+this.autoRefreshId)
+                }else{
+                    window.clearInterval(this.autoRefreshId)
+                    console.log("关闭定时刷新："+this.autoRefreshId)
+                }                
+            },
+            switchDesktopPrompt(){
             }
         },
         created: function(){
             this.getfunddata()
+        },
+        destroyed: function(){
+            if(this.autoRefreshId){
+                clearInterval(this.autoRefreshId); 
+                console.log("关闭定时刷新："+this.autoRefreshId)
+            }
         }        
     }
     </script>
