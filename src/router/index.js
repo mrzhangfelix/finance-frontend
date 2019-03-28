@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from '@/components/Home'
 import FundList from '@/components/fund/FundList'
 import TodayFundJson from '@/components/fund/TodayFundJson'
+import IndexInfo from '@/components/index/IndexInfo'
 
 Vue.use(Router)
 
@@ -22,6 +23,11 @@ export default new Router({
           path: '/todayFundJson',
           name: '今日基金配置',
           component: TodayFundJson
+        },
+        {
+          path: '/indexInfo',
+          name: '指数信息',
+          component: IndexInfo
         }
       ]
     }
