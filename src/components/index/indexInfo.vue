@@ -64,7 +64,7 @@ export default {
     },
     methods: {
             getindexdata(){
-                this.getRequest("/api/finance/getIndexInfoNew").then(resp=> {
+                this.getRequest("/api/finance/getIndexInfo").then(resp=> {
                     if (resp && resp.status == 200) {
                         var data = resp.data;
                         this.indexData = resp.data
