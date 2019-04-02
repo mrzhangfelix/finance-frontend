@@ -4,6 +4,7 @@ import Home from '@/components/Home'
 import FundList from '@/components/fund/FundList'
 import TodayFundJson from '@/components/fund/TodayFundJson'
 import IndexInfo from '@/components/index/IndexInfo'
+import ChartLine from '@/components/chart/ChartLine'
 
 Vue.use(Router)
 
@@ -28,6 +29,12 @@ export default new Router({
           path: '/indexInfo',
           name: '指数信息',
           component: IndexInfo
+        }
+        ,
+        {
+          path: '/ChartLine',
+          name: '折线图',
+          component: ChartLine
         }
       ]
     }
