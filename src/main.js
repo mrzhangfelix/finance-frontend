@@ -12,11 +12,11 @@ import {putRequest} from './utils/api'
 import {isNotNullORBlank} from './utils/utils'
 import './utils/filter_utils'
 import 'font-awesome/css/font-awesome.min.css'
-// import VCharts from 'v-charts'
+import VCharts from 'v-charts'
 
 Vue.config.productionTip = false
 Vue.use(ElementUI)
-// Vue.use(VCharts)
+Vue.use(VCharts)
 
 Vue.prototype.getRequest = getRequest;
 Vue.prototype.postRequest = postRequest;
