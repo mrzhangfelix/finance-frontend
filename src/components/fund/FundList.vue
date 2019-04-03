@@ -49,7 +49,12 @@
             <el-table-column
                     prop="fundamount"
                     sortable
-                    label="总值">
+                    label="总估值">
+            </el-table-column>
+            <el-table-column
+                    prop="amountNow"
+                    sortable
+                    label="总估值（份额计算）">
             </el-table-column>
             <el-table-column
                     prop="yingli"
@@ -60,6 +65,31 @@
                     prop="zhangfu"
                     sortable
                     label="涨幅">
+            </el-table-column>
+            <el-table-column
+                    prop="dwjz"
+                    sortable
+                    label="单位净值">
+            </el-table-column>
+            <el-table-column
+                    prop="gusuanzhi"
+                    sortable
+                    label="估算值">
+            </el-table-column>
+            <el-table-column
+                    prop="holdShare"
+                    sortable
+                    label="持有份额">
+            </el-table-column>
+            <el-table-column
+                    prop="buyamount7"
+                    sortable
+                    label="buyamount7">
+            </el-table-column>
+            <el-table-column
+                    prop="buyshare7"
+                    sortable
+                    label="buyshare7">
             </el-table-column>
         </el-table>
     </div>
