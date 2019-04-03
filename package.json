@@ -11,8 +11,10 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "echarts": "^4.2.1",
     "element-ui": "^2.6.3",
     "font-awesome": "^4.7.0",
+    "v-charts": "^1.19.0",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
     "webpack-dev-server": "^2.9.6"

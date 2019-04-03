@@ -20,7 +20,11 @@
                   <i class="el-icon-menu"></i>
                   <span slot="title">指数信息</span>
                 </el-menu-item>
-                <el-menu-item index="4">
+              <el-menu-item index="4" @click="goChartLine">
+                <i class="el-icon-menu"></i>
+                <span slot="title">收益折线图</span>
+              </el-menu-item>
+                <el-menu-item index="5">
                   <i class="el-icon-menu"></i>
                   <span slot="title">监控预警</span>
                 </el-menu-item>
@@ -58,6 +62,9 @@
       },
       goindexInfo(){
         this.$router.push({path: '/indexInfo'});
+      },
+      goChartLine(){
+        this.$router.push({path: '/ChartLine'});
       }
     }
   }
