@@ -22,7 +22,7 @@
                     v-model="desktopPrompt"
                     active-color="#13ce66"
                     inactive-color="#ff4949"
-                    @change="switchDesktopPrompt">
+                    >
                     </el-switch>
             </el-form-item> 
             <el-form-item>
@@ -40,56 +40,62 @@
             <el-table-column
                     prop="fundName"
                     sortable
+                    width="200"
                     label="名称">
             </el-table-column>
             <el-table-column
                     prop="fundcode"
+                    width="80"
                     label="编码">
             </el-table-column>
             <el-table-column
                     prop="fundamount"
                     sortable
+                    width="100"
                     label="总估值">
             </el-table-column>
             <el-table-column
                     prop="amountNow"
                     sortable
-                    label="总估值（份额计算）">
+                    width="150"
+                    label="现值（份额计算）">
             </el-table-column>
             <el-table-column
                     prop="yingli"
                     sortable
+                    width="80"
                     label="盈利">
             </el-table-column>
             <el-table-column
                     prop="zhangfu"
                     sortable
+                    width="80"
                     label="涨幅">
             </el-table-column>
             <el-table-column
                     prop="dwjz"
                     sortable
+                    width="100"
                     label="单位净值">
             </el-table-column>
             <el-table-column
                     prop="gusuanzhi"
                     sortable
+                    width="100"
                     label="估算值">
             </el-table-column>
             <el-table-column
                     prop="holdShare"
-                    sortable
+                    width="80"
                     label="持有份额">
             </el-table-column>
             <el-table-column
-                    prop="buyamount7"
-                    sortable
-                    label="buyamount7">
-            </el-table-column>
-            <el-table-column
-                    prop="buyshare7"
-                    sortable
-                    label="buyshare7">
+                    label="七日内买入"
+                    >
+                <template slot-scope="scope">
+                    金额：{{JSON.stringify(scope.row.buyamount7)}}<br>
+                    份额：{{JSON.stringify(scope.row.buyshare7)}}
+                </template>
             </el-table-column>
         </el-table>
     </div>
@@ -144,9 +150,6 @@
                     return 'down-row';
                 }
             },
-            handleEdit(index, row){
-                console.log(row)
-            },
             notifyMe() {
                     // 先检查浏览器是否支持
                     if(!("Notification" in window)) {
@@ -178,7 +181,9 @@
                     console.log("关闭定时刷新："+this.autoRefreshId)
                 }                
             },
-            switchDesktopPrompt(){
+            getBuyInfo(index,row){
+                console.log(JSON.stringify(row.buyamount7))
+                console.log(JSON.stringify(row.buyshare7))
             }
         },
         created: function(){
