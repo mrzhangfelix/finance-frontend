@@ -41,24 +41,46 @@
             <el-table-column
                     prop="fundamount"
                     width="100"
-                    label="现持有总值">
+                    label="总值">
             </el-table-column>
+          <el-table-column
+            prop="holdShare"
+            width="100"
+            label="份额">
+          </el-table-column>
             <el-table-column
+              width="65"
                     prop="add"
                     label="定投">
             </el-table-column>
             <el-table-column
+              width="75"
                     prop="amountChange"
-                    label="今日买入卖出">
+                    label="今日买入">
             </el-table-column>
             <el-table-column
+              width="75"
                     prop="yingli"
                     label="昨日盈利">
             </el-table-column>
+          <el-table-column
+            width="75"
+            prop="gusuanzhi"
+            label="昨日估值">
+          </el-table-column>
             <el-table-column
+              width="75"
                     prop="zhangfu"
                     label="昨日涨幅">
             </el-table-column>
+          <el-table-column
+            label="七日内买入"
+          >
+            <template slot-scope="scope">
+              金额：{{JSON.stringify(scope.row.buyamount7)}}<br>
+              份额：{{JSON.stringify(scope.row.buyshare7)}}
+            </template>
+          </el-table-column>
             <el-table-column
                     fixed="right"
                     label="操作"
