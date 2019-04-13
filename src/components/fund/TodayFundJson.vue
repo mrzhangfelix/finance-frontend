@@ -9,12 +9,6 @@
                 <el-button size="mini" type="danger" @click="updatefundjson">更新配置文件</el-button>
             </el-form-item>  
             <el-form-item>  
-                <el-button size="mini" type="danger">下载配置文件</el-button>
-            </el-form-item>  
-            <el-form-item>  
-                <el-button size="mini" type="danger">上传配置文件</el-button>
-            </el-form-item>  
-            <el-form-item>  
                 <el-button size="mini" type="danger" @click="adddialogVisible=true">添加一组数据</el-button>
             </el-form-item>  
         </el-form>
@@ -56,7 +50,12 @@
             <el-table-column
               width="75"
                     prop="amountChange"
-                    label="今日买入">
+                    label="买入金额">
+            </el-table-column>
+            <el-table-column
+              width="75"
+                    prop="shareChange"
+                    label="卖出份额">
             </el-table-column>
             <el-table-column
               width="75"
@@ -84,7 +83,7 @@
             <el-table-column
                     fixed="right"
                     label="操作"
-                    width="200">
+                    width="50">
                 <template slot-scope="scope">
                     <el-button
                             size="mini"
@@ -106,8 +105,11 @@
                         <el-form-item label="定投">
                                 <el-input v-model="editForm.add"></el-input>
                         </el-form-item>
-                        <el-form-item label="今日买入卖出">
+                        <el-form-item label="今日买入金额">
                                 <el-input v-model="editForm.amountChange"></el-input>
+                        </el-form-item>
+                        <el-form-item label="今日卖出份额">
+                                <el-input v-model="editForm.shareChange"></el-input>
                         </el-form-item>
                 </el-form>
                 <span slot="footer" class="dialog-footer">
@@ -151,7 +153,8 @@
                     fundcode:'',
                     fundamount:'',
                     add:'',
-                    amountChange:''
+                    amountChange:'',
+                    shareChange:''
                 },
                 addForm:{
                     fundcode:'',
@@ -184,6 +187,7 @@
                 this.editForm.fundamount=row.fundamount
                 this.editForm.add=row.add
                 this.editForm.amountChange=row.amountChange
+                this.editForm.shareChange=row.shareChange
                 this.editdialogVisible=true
             },
             changeJsonByCode(){
