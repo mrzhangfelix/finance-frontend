@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>折线图</h1>
+    <el-button size="mini" type="danger" @click="getYingliList">刷新</el-button>
     <ve-line :data="chartData" :settings="chartSettings"></ve-line>
   </div>
 </template>
