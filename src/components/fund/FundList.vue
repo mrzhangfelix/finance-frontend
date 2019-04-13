@@ -84,19 +84,19 @@
                     width="100"
                     label="估算值">
             </el-table-column>
-            <el-table-column
+            <!-- <el-table-column
                     prop="holdShare"
                     width="80"
                     label="持有份额">
-            </el-table-column>
-            <el-table-column
+            </el-table-column> -->
+            <!-- <el-table-column
                     label="七日内买入"
                     >
                 <template slot-scope="scope">
                     金额：{{JSON.stringify(scope.row.buyamount7)}}<br>
                     份额：{{JSON.stringify(scope.row.buyshare7)}}
                 </template>
-            </el-table-column>
+            </el-table-column> -->
         </el-table>
     </div>
 </template>
